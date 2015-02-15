@@ -1,4 +1,5 @@
-# Reproducible Research: Peer Assessment 1
+# Reproducible Research: Peer Assessment 1   
+
 
 ## Loading and preprocessing the data
 
@@ -13,8 +14,8 @@ activity <- read.csv("activity.csv")
 
 For this part of the assignment, you can ignore the missing values in the dataset.
 
-1. Calculate the total number of steps taken per day
-2. Make a histogram of the total number of steps taken each day
+* Calculate the total number of steps taken per day
+* Make a histogram of the total number of steps taken each day
 
 
 ```r
@@ -24,7 +25,8 @@ barplot(steps.bydate$steps, names.arg=steps.bydate$date, xlab="Dates", ylab="# o
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
 
-3. Calculate and report the mean and median of the total number of steps taken per day
+
+* Calculate and report the mean and median of the total number of steps taken per day
 
 
 ```r
@@ -43,9 +45,10 @@ median(steps.bydate$steps)
 ## [1] 10765
 ```
 
+
 ## What is the average daily activity pattern?
 
-1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+* Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
 
 ```r
@@ -55,7 +58,8 @@ plot(steps.byinterval, type="l")
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
 
-2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+
+* Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
 
 ```r
@@ -69,7 +73,7 @@ steps.byinterval$interval[which.max(steps.byinterval$steps)]
 
 ## Imputing missing values
 
-1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)   
+* Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)   
 
 
 ```r
@@ -80,11 +84,13 @@ sum(is.na(activity))
 ## [1] 2304
 ```
 
-2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.   
+
+* Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.   
 
 For the missing values I will use as filler values the means for the 5-minute intervals.
 
-3. Create a new dataset that is equal to the original dataset but with the missing data filled in.   
+
+* Create a new dataset that is equal to the original dataset but with the missing data filled in.   
 
 
 ```r
@@ -94,7 +100,8 @@ activity_intervals$steps[nas] <- activity_intervals$steps.y[nas]
 activity <- activity_intervals[,c(1:3)]
 ```
 
-4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+
+* Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 
 ```r
@@ -122,9 +129,10 @@ median(steps.bydate$steps)
 
 The effect of the missing data it seems to not affect the estimates of the total daily number of steps.
 
+
 ## Are there differences in activity patterns between weekdays and weekends?
 
-1. Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
+* Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 
 
 ```r
@@ -138,7 +146,8 @@ daygroup <- function(date) {
 activity$daygroup <- as.factor(sapply(activity$date, daygroup))
 ```
 
-2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
+
+* Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 
 
 ```r
@@ -153,4 +162,6 @@ xyplot(steps ~ interval | daygroup, data = activity,
 ```
 
 ![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
+
+
 
