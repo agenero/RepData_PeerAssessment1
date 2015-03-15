@@ -20,7 +20,7 @@ For this part of the assignment, you can ignore the missing values in the datase
 
 ```r
 steps.bydate <- aggregate(steps ~ date, data=activity, FUN=sum)
-barplot(steps.bydate$steps, names.arg=steps.bydate$date, xlab="Dates", ylab="# of steps")
+hist(steps.bydate$steps, main="Distribution of total steps per day", xlab="Number of steps per day", ylab="Frequency")
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
@@ -106,7 +106,7 @@ activity <- activity_intervals[,c(1:3)]
 
 ```r
 steps.bydate <- aggregate(steps ~ date, data=activity, FUN=sum)
-barplot(steps.bydate$steps, names.arg=steps.bydate$date, xlab="Date", ylab="Steps")
+hist(steps.bydate$steps, main="Distribution of total steps per day", xlab="Number of steps per day", ylab="Frequency") 
 ```
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
